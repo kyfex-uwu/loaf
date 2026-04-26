@@ -6,7 +6,7 @@ import {
     Routes,
     SlashCommandBuilder,
 } from "discord.js"
-import {spawn} from "child_process"
+import {exec} from "child_process"
 
 const blacklist = new Set([]);
 
@@ -41,8 +41,6 @@ const keymaps = {
 function enable(enabled, name){
     console.log("enabled: "+enabled)
 
-    spawn()
-
     let command = "wait ";
     for(const entry of Object.entries(keymaps)){
         command += `&& xmodmap -e "keycode ${entry[0]} = ${enabled ? 
@@ -51,8 +49,12 @@ function enable(enabled, name){
 
     exec(command);
 
-    if(!enabled) exec(`notify-send -t 999999 "${name} is loafing on you"`)
-    else exec(`notify-send -t 999999 "${name} has stepped off your keyboard"`)
+    try {
+        if (!enabled) exec(`notify-send -t 999999 "$(echo ${btoa(name)} | base64 -d) is loafing on you"`)
+        else exec(`notify-send "$(echo ${btoa(name)} | base64 -d) has stepped off your keyboard"`)
+    }catch(e){
+        console.trace(e)
+    }
 }
 
 //--
