@@ -7,5 +7,5 @@ note: this currently only works on linux distros that use X11
 installation:
 - clone the repository
 - run npm init
-- create a .env file with the contents `TOKEN = <your bot token>`
+- rename `example.env` to `.env` and fill it out
 - run `npm run-script run`
