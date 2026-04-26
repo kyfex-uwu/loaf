@@ -1,0 +1,15 @@
+{
+  "name": "loaf",
+  "version": "1.0.0",
+  "description": "let others loaf on your keyboard",
+  "main": "index.js",
+  "scripts": {
+    "run": "node --env-file=.env index.js"
+  },
+  "author": "kyfex",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.26.3"
+  },
+  "type": "module"
+}
