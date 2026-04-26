@@ -8,8 +8,8 @@ import {
 } from "discord.js"
 import {exec} from "child_process"
 
-const blacklist = new Set(process.env.BLACKLIST.split(" "));
-const whitelist = new Set(process.env.WHITELIST.split(" "));
+const blacklist = new Set((process.env.BLACKLIST||"").split(" "));
+const whitelist = new Set((process.env.WHITELIST||"").split(" "));
 
 const keymaps = {
     24:"q",
