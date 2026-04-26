@@ -92,8 +92,8 @@ client.once(Events.ClientReady, (readyClient) => {
 });
 
 new REST().setToken(process.env.TOKEN).put(Routes.applicationCommands("1498004833234325595"), { body: [
-        new SlashCommandBuilder().setName("loaf").setDescription("loaf on kyfex").setContexts([0,1,2]).toJSON(),
-        new SlashCommandBuilder().setName("unloaf").setDescription("stop loafing on kyfex").setContexts([0,1,2]).toJSON(),
+        new SlashCommandBuilder().setName("loaf").setDescription(`loaf on ${process.env.USER_NAME}`).setContexts([0,1,2]).toJSON(),
+        new SlashCommandBuilder().setName("unloaf").setDescription(`stop loafing on ${process.env.USER_NAME}`).setContexts([0,1,2]).toJSON(),
 ] });
 
 client.login(process.env.TOKEN);
