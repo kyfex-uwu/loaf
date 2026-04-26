@@ -8,7 +8,8 @@ import {
 } from "discord.js"
 import {exec} from "child_process"
 
-const blacklist = new Set([]);
+const blacklist = new Set(process.env.BLACKLIST.split(" "));
+const whitelist = new Set(process.env.WHITELIST.split(" "));
 
 const keymaps = {
     24:"q",
@@ -65,6 +66,7 @@ client.once(Events.ClientReady, (readyClient) => {
 
     client.on(Events.InteractionCreate, interaction=>{
         if(blacklist.has(interaction.user.id)) return;
+        if(whitelist.size>0 && !whitelist.has(interaction.user.id))
 
         if(interaction.isCommand()
             && interaction instanceof CommandInteraction
@@ -84,7 +86,7 @@ client.once(Events.ClientReady, (readyClient) => {
                         withResponse:true,
                         ephemeral: true,
                     })
-                    enable(true);
+                    enable(true, interaction.user.displayName);
                     break;
             }
         }
